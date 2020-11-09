@@ -1,8 +1,6 @@
-$("#testingDiv").text("TESTING");
-
 // Function to convert degrees Kelvin to degrees Farenheit
 function toFar(degreesKelvin) {
-    let degreesFar = ((degreesKelvin - 273.15) * (9 / 5) + 32).toFixed(2);
+    let degreesFar = Math.floor(((degreesKelvin - 273.15) * (9 / 5) + 32));
     return degreesFar;
 }
 
@@ -28,16 +26,43 @@ function weatherAPICall(cityName) {
 
         // 5-day:
         // Date
-        let unix_timestamp = response.list[0].dt;
-        console.log(unix_timestamp);
-        let date = new Date(unix_timestamp * 1000);
-        let dateDay = date.getDate();
-        let dateStr = dateDay + "/";
-        console.log(dateStr);
-        // Weather condition img
-        // Temp (F)
-        // Humidity
+        function getDate(dateIndex) {
+            let unix_timestamp = response.list[dateIndex].dt;
+            console.log(unix_timestamp);
+            let date = new Date(unix_timestamp * 1000);
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            let year = date.getFullYear();
+            let dateStr = month + "/" + day + "/" + year;
+            return dateStr;
+        }
+        // console.log(getDate(0));
+        // console.log(getDate(8));
+        // console.log(getDate(16));
+        // console.log(getDate(24));
 
+        // Weather condition img
+        function getWeatherIcon(dateIndex) {
+            let weatherIcon = response.list[dateIndex].weather[dateIndex].icon;
+            return weatherIcon;
+        }
+        //$("#testingDiv").append("<img src='http://openweathermap.org/img/wn/" + getWeatherIcon(0) + "@2x.png'>")
+
+        // Temp (F)
+        function getTemp(dateIndex) {
+            let temperature = toFar(response.list[dateIndex].main.temp) + "\xB0 F";
+            return temperature;
+        }
+        //console.log(getTemp(0));
+
+        // Humidity
+        function getHumidity(dateIndex) {
+            let humidity = response.list[dateIndex].main.humidity + "%";
+            return humidity;
+        }
+        console.log(getHumidity(0));
+
+        // Get latitude and longitude for One Call Weather API to find current weather
         let latitude = response.city.coord.lat;
         let longitude = response.city.coord.lon;
 
