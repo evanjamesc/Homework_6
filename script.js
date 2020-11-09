@@ -15,20 +15,15 @@ function weatherAPICall(cityName) {
 
     let queryURLForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&appid=" + apiKey;
 
-
-
     $.ajax({
         url: queryURLForecast,
         method: "GET"
     }).then(function (response) {
 
-        //console.log(response);
-
         // 5-day:
         // Date
         function getDate(dateIndex) {
             let unix_timestamp = response.list[dateIndex].dt;
-            console.log(unix_timestamp);
             let date = new Date(unix_timestamp * 1000);
             let month = date.getMonth() + 1;
             let day = date.getDate();
@@ -60,7 +55,7 @@ function weatherAPICall(cityName) {
             let humidity = response.list[dateIndex].main.humidity + "%";
             return humidity;
         }
-        console.log(getHumidity(0));
+        //console.log(getHumidity(0));
 
         // Get latitude and longitude for One Call Weather API to find current weather
         let latitude = response.city.coord.lat;
@@ -75,9 +70,23 @@ function weatherAPICall(cityName) {
                 method: "GET"
             }).then(function (response) {
 
-                //console.log(response);
-
                 // Current weather
+
+                // Date
+                function getCurrentDate() {
+                    let unix_timestamp = response.current.dt;
+                    let date = new Date(unix_timestamp * 1000);
+                    let month = date.getMonth() + 1;
+                    let day = date.getDate();
+                    let year = date.getFullYear();
+                    let dateStr = month + "/" + day + "/" + year;
+                    return dateStr;
+                }
+
+                // Weather Icon
+                let currentWeatherIcon = "http://openweathermap.org/img/wn/" + response.current.weather[0].icon + "@2x.png";
+                // $("#testingDiv").append("<img src=" + currentWeatherIcon + ">");
+
                 // Temp F
                 let currentTemp = toFar(response.current.temp) + "\xB0 F";
                 //console.log(currentTemp);
