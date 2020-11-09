@@ -24,13 +24,20 @@ function weatherAPICall(cityName) {
         method: "GET"
     }).then(function (response) {
 
+        //console.log(response);
+
         // 5-day:
         // Date
+        let unix_timestamp = response.list[0].dt;
+        console.log(unix_timestamp);
+        let date = new Date(unix_timestamp * 1000);
+        let dateDay = date.getDate();
+        let dateStr = dateDay + "/";
+        console.log(dateStr);
         // Weather condition img
         // Temp (F)
         // Humidity
 
-        // console.log(response);
         let latitude = response.city.coord.lat;
         let longitude = response.city.coord.lon;
 
@@ -43,14 +50,21 @@ function weatherAPICall(cityName) {
                 method: "GET"
             }).then(function (response) {
 
-                console.log(response);
+                //console.log(response);
 
                 // Current weather
                 // Temp F
+                let currentTemp = toFar(response.current.temp) + "\xB0 F";
+                //console.log(currentTemp);
                 // Humidity
+                let currentHumidity = response.current.humidity + "%";
+                //console.log(currentHumidity);
                 // Wind speed (mph)
+                let currentWindSpeed = toMPH(response.current.wind_speed) + " mph";
+                //console.log(currentWindSpeed);
                 // UV index
-
+                let currentUVI = response.current.uvi;
+                //console.log(currentUVI);
             });
         }
 
@@ -60,4 +74,4 @@ function weatherAPICall(cityName) {
 
 }
 
-weatherAPICall("River Falls");
+weatherAPICall("River Falls",);
