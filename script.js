@@ -82,23 +82,29 @@ function weatherAPICall(cityName) {
                     let dateStr = month + "/" + day + "/" + year;
                     return dateStr;
                 }
+                $("#currentDate").text(cityName + " " + getCurrentDate() + "    " );
 
                 // Weather Icon
                 let currentWeatherIcon = "http://openweathermap.org/img/wn/" + response.current.weather[0].icon + "@2x.png";
-                // $("#testingDiv").append("<img src=" + currentWeatherIcon + ">");
+                // Append weather icon to current date
+                $("#currentDate").append("<img src=" + currentWeatherIcon + ">");
 
                 // Temp F
                 let currentTemp = toFar(response.current.temp) + "\xB0 F";
-                //console.log(currentTemp);
+                $("#currentTemp").text(currentTemp);
+
                 // Humidity
                 let currentHumidity = response.current.humidity + "%";
-                //console.log(currentHumidity);
+                $("#currentHumidity").text(currentHumidity);
+
                 // Wind speed (mph)
                 let currentWindSpeed = toMPH(response.current.wind_speed) + " mph";
-                //console.log(currentWindSpeed);
+                $("currentWindSpeed").text(currentWindSpeed);
+
                 // UV index
                 let currentUVI = response.current.uvi;
-                //console.log(currentUVI);
+                $("#currentUVI").text(currentUVI);
+
             });
         }
 
