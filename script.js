@@ -31,24 +31,28 @@ function weatherAPICall(cityName) {
             let dateStr = month + "/" + day + "/" + year;
             return dateStr;
         }
-
-        let dateIndexCounter = 0;
+        // Send date to html
         for(let i = 0; i < 5; i++) {
-            $("#day" + (i + 1)).text(getDate(dateIndexCounter));
-            dateIndexCounter = dateIndexCounter + 8;
+            $("#day" + (i + 1) + "Date").text(getDate(i * 8));
         }
 
         // Weather condition img
         function getWeatherIcon(dateIndex) {
-            let weatherIcon = response.list[dateIndex].weather[dateIndex].icon;
-            return weatherIcon;
+            let weatherIcon = response.list[dateIndex].weather[0].icon;
+            return "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
         }
-        //$("#testingDiv").append("<img src='http://openweathermap.org/img/wn/" + getWeatherIcon(0) + "@2x.png'>")
+        // Send weather icons to html
+        for(i = 0; i < 5; i++) {
+            $("#day" + (i + 1) + "Icon").attr("src", getWeatherIcon(i * 8));
+        }
 
         // Temp (F)
         function getTemp(dateIndex) {
             let temperature = toFar(response.list[dateIndex].main.temp) + "\xB0 F";
             return temperature;
+        }
+        for(let i = 0; i < 5; i++) {
+            $("#day" + (i + 1) + "Temp").text(getTemp(i * 8));
         }
         //console.log(getTemp(0));
 
