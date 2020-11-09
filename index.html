@@ -1,43 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
 </head>
+
 <body>
-    <div id="testingDiv">
-        <div id="today">
-            <h1 id="currentDate"></h1>
-            <p id="currentTemp"></p>
-            <p id="currentHumidity"></p>
-            <p id="currentWindSpeed"></p>
-            <p id="currentUVI"></p>
+    <div id="today">
+        <h1 id="currentDate"></h1>
+        <p id="currentTemp"></p>
+        <p id="currentHumidity"></p>
+        <p id="currentWindSpeed"></p>
+        <p id="currentUVI"></p>
+    </div>
+
+    <div id="fiveDay">
+
+        <h2>5-Day Forecast:</h2>
+
+        <div id="day1" class="forecast">
+            <div id="day1Date" class="dates"></div>
+            <img id="day1Icon">
+            <div id="day1Temp"></div><br>
+            <div id="day1Humidity"></div>
+
         </div>
 
-        <div id="dayOne" class="forecast">
+        <br>
+
+        <div id="day2" class="forecast">
+            <div id="day2Date" class="dates"></div>
+            <img id="day2Icon">
+            <div id="day2Temp"></div><br>
+            <div id="day2Humidity"></div>
 
         </div>
 
-        <div id="dayTwo" class="forecast">
-            
+        <br>
+
+        <div id="day3" class="forecast">
+            <div id="day3Date" class="dates"></div>
+            <img id="day3Icon">
+            <div id="day3Temp"></div><br>
+            <div id="day3Humidity"></div>
+
         </div>
 
-        <div id="dayThree" class="forecast">
-            
+        <br>
+
+        <div id="day4" class="forecast">
+            <div id="day4Date" class="dates"></div>
+            <img id="day4Icon">
+            <div id="day4Temp"></div><br>
+            <div id="day4Humidity"></div>
+
         </div>
 
-        <div id="dayFour" class="forecast">
-            
-        </div>
+        <br>
 
-        <div id="dayFive" class="forecast">
-            
+
+        <div id="day5" class="forecast">
+            <div id="day5Date" class="dates"></div>
+            <img id="day5Icon">
+            <div id="day5Temp"></div><br>
+            <div id="day5Humidity"></div>
+
         </div>
 
     </div>
+
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="script.js"></script>
+
 </html>

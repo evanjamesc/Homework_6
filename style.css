@@ -1,8 +1,13 @@
-#testingDiv {
+#today {
     border-style: solid;
     background-color: #596F80;
 }
 
 #currentUVI {
     border-style: solid;
+}
+
+.forecast {
+    border-style: solid;
+    background-color: #8BAABB;
 }

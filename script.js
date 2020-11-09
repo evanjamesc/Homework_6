@@ -31,10 +31,12 @@ function weatherAPICall(cityName) {
             let dateStr = month + "/" + day + "/" + year;
             return dateStr;
         }
-        // console.log(getDate(0));
-        // console.log(getDate(8));
-        // console.log(getDate(16));
-        // console.log(getDate(24));
+
+        let dateIndexCounter = 0;
+        for(let i = 0; i < 5; i++) {
+            $("#day" + (i + 1)).text(getDate(dateIndexCounter));
+            dateIndexCounter = dateIndexCounter + 8;
+        }
 
         // Weather condition img
         function getWeatherIcon(dateIndex) {
