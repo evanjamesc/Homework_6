@@ -104,6 +104,18 @@ function weatherAPICall(cityName) {
                 // UV index
                 let currentUVI = response.current.uvi;
                 $("#currentUVI").text(currentUVI);
+                // Adjust UVI div background color according to conditions
+                if(currentUVI < 2) {
+                    $("#currentUVI").css("background-color", "green");
+                } else if(currentUVI >= 2 && currentUVI < 6) {
+                    $("#currentUVI").css("background-color", "yellow");
+                } else if(currentUVI >= 6 && currentUVI < 8) {
+                    $("#currentUVI").css("background-color", "orange");
+                } else if(currentUVI >= 8 && currentUVI <= 10) {
+                    $("#currentUVI").css("background-color", "red");
+                } else if(currentUVI > 10) {
+                    $("#currentUVI").css("background-color", "purple");
+                }
 
             });
         }
