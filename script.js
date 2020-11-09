@@ -32,7 +32,7 @@ function weatherAPICall(cityName) {
             return dateStr;
         }
         // Send date to html
-        for(let i = 0; i < 5; i++) {
+        for (let i = 0; i < 5; i++) {
             $("#day" + (i + 1) + "Date").text(getDate(i * 8));
         }
 
@@ -42,7 +42,7 @@ function weatherAPICall(cityName) {
             return "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
         }
         // Send weather icons to html
-        for(i = 0; i < 5; i++) {
+        for (i = 0; i < 5; i++) {
             $("#day" + (i + 1) + "Icon").attr("src", getWeatherIcon(i * 8));
         }
 
@@ -51,8 +51,8 @@ function weatherAPICall(cityName) {
             let temperature = toFar(response.list[dateIndex].main.temp) + "\xB0 F";
             return temperature;
         }
-        for(let i = 0; i < 5; i++) {
-            $("#day" + (i + 1) + "Temp").text(getTemp(i * 8));
+        for (let i = 0; i < 5; i++) {
+            $("#day" + (i + 1) + "Temp").text("Temperature: " + getTemp(i * 8));
         }
         //console.log(getTemp(0));
 
@@ -60,6 +60,9 @@ function weatherAPICall(cityName) {
         function getHumidity(dateIndex) {
             let humidity = response.list[dateIndex].main.humidity + "%";
             return humidity;
+        }
+        for (let i = 0; i < 5; i++) {
+            $("#day" + (i + 1) + "Humidity").text("Humidity: " + getHumidity(i * 8));
         }
         //console.log(getHumidity(0));
 
@@ -88,7 +91,7 @@ function weatherAPICall(cityName) {
                     let dateStr = month + "/" + day + "/" + year;
                     return dateStr;
                 }
-                $("#currentDate").text(cityName + " " + getCurrentDate() + "    " );
+                $("#currentDate").text(cityName + " " + getCurrentDate() + "    ");
 
                 // Weather Icon
                 let currentWeatherIcon = "http://openweathermap.org/img/wn/" + response.current.weather[0].icon + "@2x.png";
@@ -111,15 +114,15 @@ function weatherAPICall(cityName) {
                 let currentUVI = response.current.uvi;
                 $("#currentUVI").text(currentUVI);
                 // Adjust UVI div background color according to conditions
-                if(currentUVI < 2) {
+                if (currentUVI < 2) {
                     $("#currentUVI").css("background-color", "green");
-                } else if(currentUVI >= 2 && currentUVI < 6) {
+                } else if (currentUVI >= 2 && currentUVI < 6) {
                     $("#currentUVI").css("background-color", "yellow");
-                } else if(currentUVI >= 6 && currentUVI < 8) {
+                } else if (currentUVI >= 6 && currentUVI < 8) {
                     $("#currentUVI").css("background-color", "orange");
-                } else if(currentUVI >= 8 && currentUVI <= 10) {
+                } else if (currentUVI >= 8 && currentUVI <= 10) {
                     $("#currentUVI").css("background-color", "red");
-                } else if(currentUVI > 10) {
+                } else if (currentUVI > 10) {
                     $("#currentUVI").css("background-color", "purple");
                 }
 
@@ -132,4 +135,10 @@ function weatherAPICall(cityName) {
 
 }
 
-weatherAPICall("River Falls",);
+weatherAPICall("Minneapolis");
+
+$("#cityButton").on("click", function () {
+    // Struggling to make this work
+    weatherAPICall($("#cityInput").val());
+
+});
